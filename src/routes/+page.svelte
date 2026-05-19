@@ -25,7 +25,6 @@ const form = superForm(data.form, {
 	SPA: true,
 	onUpdate({ form }) {
 		if (form.valid) {
-        // @ts-expect-error this works
 			runEuclidean(parseInt(form.data.num1), parseInt(form.data.num2));
 		}
 	},
@@ -106,13 +105,13 @@ function handleClear() {
 
   <Card.Root>
     <Card.Content class="pt-6">
-      <form method="POST" use:enhance class="space-y-6">
+      <form use:enhance class="space-y-6">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Form.Field {form} name="num1">
             <Form.Control>
               {#snippet children({ props })}
                 <Form.Label>First Integer</Form.Label>
-                <Input {...props} type="number" placeholder="e.g. 13" bind:value={$formData.num1} />
+                <Input {...props} placeholder="e.g. 13" bind:value={$formData.num1} />
               {/snippet}
             </Form.Control>
             <Form.FieldErrors />
@@ -122,7 +121,7 @@ function handleClear() {
             <Form.Control>
               {#snippet children({ props })}
                 <Form.Label>Second Integer</Form.Label>
-                <Input {...props} type="number" placeholder="e.g. 8" bind:value={$formData.num2} />
+                <Input {...props} placeholder="e.g. 8" bind:value={$formData.num2} />
               {/snippet}
             </Form.Control>
             <Form.FieldErrors />
